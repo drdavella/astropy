@@ -32,7 +32,7 @@ from astropy.utils.exceptions import (AstropyDeprecationWarning,
 
 
 # For backward-compatibility with affiliated packages
-from .runner import TestRunner  # pylint: disable=W0611
+from ..runner import TestRunner  # pylint: disable=W0611
 
 __all__ = ['raises', 'enable_deprecations_as_exceptions', 'remote_data',
            'treat_deprecations_as_exceptions', 'catch_warnings',

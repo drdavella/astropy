@@ -6,7 +6,7 @@ import sys
 import glob
 
 import ah_bootstrap
-from setuptools import setup
+from setuptools import setup, find_packages
 
 from astropy_helpers.setup_helpers import (
     register_commands, get_package_info, get_debug_option)
@@ -27,19 +27,22 @@ RELEASE = 'dev' not in VERSION
 if not RELEASE:
     VERSION += get_git_devstr(False)
 
+# patterns of packages to be excluded
+exclude = ['*.tests', '*.tests.*']
+
 # Populate the dict of setup command overrides; this should be done before
 # invoking any other functionality from distutils since it can potentially
 # modify distutils' behavior.
-cmdclassd = register_commands(NAME, VERSION, RELEASE)
+cmdclassd = register_commands(NAME, VERSION, RELEASE, exclude=exclude)
 
 # Freeze build information in version.py
 generate_version_py(NAME, VERSION, RELEASE, get_debug_option(NAME),
                     uses_git=not RELEASE)
 
 # Get configuration information from all of the various subpackages.
-# See the docstring for setup_helpers.update_package_files for more
+# See the docstring for setup_helpers.update_nackage_files for more
 # details.
-package_info = get_package_info()
+package_info = get_package_info(exclude=exclude)
 
 # Add the project-global data
 package_info['package_data'].setdefault('astropy', []).append('data/*')
@@ -61,6 +64,7 @@ entry_points['pytest11'] = [
 #    'doctestplus = astropy.tests.pytest_doctestplus',
     'openfiles = astropy_tests.plugins.openfiles',
     'remotedata = astropy_tests.plugins.remotedata',
+    'tabletest = astropy_tests.plugins.tabletest',
 #    'repeat = astropy.tests.pytest_repeat'
 ]
 

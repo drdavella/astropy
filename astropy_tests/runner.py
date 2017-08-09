@@ -11,10 +11,10 @@ import tempfile
 import warnings
 from collections import OrderedDict
 
-from ..config.paths import set_temp_config, set_temp_cache
-from ..extern import six
-from ..utils import wraps, find_current_module
-from ..utils.exceptions import AstropyWarning, AstropyDeprecationWarning
+from astropy.config.paths import set_temp_config, set_temp_cache
+from astropy.extern import six
+from astropy.utils import wraps, find_current_module
+from astropy.utils.exceptions import AstropyWarning, AstropyDeprecationWarning
 
 __all__ = ['TestRunner', 'TestRunnerBase', 'keyword']
 

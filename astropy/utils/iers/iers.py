@@ -26,7 +26,7 @@ from ...table import Table, QTable
 from ...utils.data import get_pkg_data_filename, clear_download_cache
 from ... import utils
 from ...utils.exceptions import AstropyWarning
-from ...tests import disable_internet
+from astropy_tests.utils import disable_internet
 
 __all__ = ['Conf', 'conf',
            'IERS', 'IERS_B', 'IERS_A', 'IERS_Auto',

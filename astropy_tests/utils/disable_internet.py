@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 import contextlib
 import socket
 
-from ..extern.six.moves import urllib
+from astropy.extern.six.moves import urllib
 
 # save original socket method for restoration
 # These are global so that re-calling the turn_off_internet function doesn't
