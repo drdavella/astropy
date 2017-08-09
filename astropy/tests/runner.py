@@ -204,7 +204,7 @@ class TestRunnerBase(object):
         # also harmless to nest the contexts
         with set_temp_config(astropy_config, delete=True):
             with set_temp_cache(astropy_cache, delete=True):
-                return pytest.main(args=args, plugins=self.keywords['plugins'])
+                return pytest.main(args=args)
 
     @classmethod
     def make_test_runner_in(cls, path):
@@ -312,8 +312,7 @@ class TestRunner(TestRunnerBase):
                     # the astropy tree, we need to forcibly load the
                     # astropy py.test plugins, and then turn on the
                     # doctest_rst plugin.
-                    all_args.extend(['-p', 'astropy.tests.pytest_plugins',
-                                     '--doctest-rst'])
+                    #all_args.extend(['--doctest-rst'])
                     test_path = abs_test_path
 
             if not (os.path.isdir(test_path) or ext in ('.py', '.rst')):
@@ -489,7 +488,8 @@ class TestRunner(TestRunnerBase):
                     "({0}) does not exist.".format(docs_path))
                 docs_path = None
         if docs_path and not kwargs['skip_docs'] and not kwargs['test_path']:
-            return [docs_path, '--doctest-rst']
+            #return [docs_path, '--doctest-rst']
+            return []
 
         return []
 

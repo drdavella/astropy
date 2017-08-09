@@ -14,8 +14,9 @@ import warnings
 
 import pytest
 
-from ..extern import six
-from ..extern.six.moves import cPickle as pickle
+# XXX: should these really be from astropy's extern module?
+from astropy.extern import six
+from astropy.extern.six.moves import cPickle as pickle
 
 try:
     # Import pkg_resources to prevent it from issuing warnings upon being
@@ -25,7 +26,8 @@ try:
 except ImportError:
     pass
 
-from ..utils.exceptions import (AstropyDeprecationWarning,
+# XXX: should this really import from astropy?
+from astropy.utils.exceptions import (AstropyDeprecationWarning,
                                 AstropyPendingDeprecationWarning)
 
 
