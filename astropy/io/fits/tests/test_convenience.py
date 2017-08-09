@@ -7,13 +7,13 @@ import warnings
 import pytest
 import numpy as np
 
-from ....extern import six  # pylint: disable=W0611
-from ....io import fits
-from ....table import Table
-from .. import printdiff
-from ....tests.helper import catch_warnings
+from astropy.extern import six  # pylint: disable=W0611
+from astropy.io import fits
+from astropy.table import Table
+from astropy.io.fits import printdiff
+from astropy_tests.utils.helper import catch_warnings
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
 
 class TestConvenience(FitsTestCase):

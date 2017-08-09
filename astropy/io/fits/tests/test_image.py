@@ -13,15 +13,14 @@ import pytest
 import numpy as np
 from numpy.testing import assert_equal
 
-from ....extern.six.moves import range
-from ....io import fits
-from ....utils.exceptions import AstropyPendingDeprecationWarning
-from ....utils.compat import NUMPY_LT_1_12
-from ....tests.helper import raises, catch_warnings, ignore_warnings
-from ..hdu.compressed import SUBTRACTIVE_DITHER_1, DITHER_SEED_CHECKSUM
-from .test_table import comparerecords
+from astropy.extern.six.moves import range
+from astropy.io import fits
+from astropy.utils.exceptions import AstropyPendingDeprecationWarning
+from astropy.utils.compat import NUMPY_LT_1_12
+from astropy_tests.utils.helper import raises, catch_warnings, ignore_warnings
+from astropy.io.fits.hdu.compressed import SUBTRACTIVE_DITHER_1, DITHER_SEED_CHECKSUM
 
-from . import FitsTestCase
+from utils.helper import comparerecords, FitsTestCase
 
 try:
     import scipy  # pylint: disable=W0611

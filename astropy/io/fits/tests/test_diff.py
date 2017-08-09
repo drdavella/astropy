@@ -5,19 +5,19 @@ import io
 import pytest
 import numpy as np
 
-from ..column import Column
-from ..diff import (FITSDiff, HeaderDiff, ImageDataDiff, TableDataDiff,
+from astropy.io.fits.column import Column
+from astropy.io.fits.diff import (FITSDiff, HeaderDiff, ImageDataDiff, TableDataDiff,
                     HDUDiff, report_diff_values)
-from ..hdu import HDUList, PrimaryHDU, ImageHDU
-from ..hdu.table import BinTableHDU
-from ..header import Header
+from astropy.io.fits.hdu import HDUList, PrimaryHDU, ImageHDU
+from astropy.io.fits.hdu.table import BinTableHDU
+from astropy.io.fits.header import Header
 
-from ....tests.helper import catch_warnings
-from ....utils.exceptions import AstropyDeprecationWarning
-from ....extern.six.moves import range
-from ....io import fits
+from astropy_tests.utils.helper import catch_warnings
+from astropy.utils.exceptions import AstropyDeprecationWarning
+from astropy.extern.six.moves import range
+from astropy.io import fits
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
 
 class TestDiff(FitsTestCase):

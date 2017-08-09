@@ -9,15 +9,15 @@ import sys
 import pytest
 import numpy as np
 
-from ..verify import VerifyError
-from ....extern.six.moves import range
-from ....extern import six
-from ....io import fits
-from ....tests.helper import raises, catch_warnings, ignore_warnings
-from ....utils.exceptions import AstropyUserWarning, AstropyDeprecationWarning
-from ....utils.compat import NUMPY_LT_1_12
+from astropy.io.fits.verify import VerifyError
+from astropy.extern.six.moves import range
+from astropy.extern import six
+from astropy.io import fits
+from astropy_tests.utils.helper import raises, catch_warnings, ignore_warnings
+from astropy.utils.exceptions import AstropyUserWarning, AstropyDeprecationWarning
+from astropy.utils.compat import NUMPY_LT_1_12
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
 
 class TestHDUListFunctions(FitsTestCase):

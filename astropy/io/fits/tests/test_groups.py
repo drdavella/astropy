@@ -7,9 +7,8 @@ import time
 import pytest
 import numpy as np
 
-from . import FitsTestCase
-from .test_table import comparerecords
-from ....io import fits
+from astropy.io import fits
+from utils.helper import comparerecords, FitsTestCase
 
 
 class TestGroupsFunctions(FitsTestCase):

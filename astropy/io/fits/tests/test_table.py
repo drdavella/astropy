@@ -16,94 +16,17 @@ try:
 except ImportError:
     HAVE_OBJGRAPH = False
 
-from ....extern import six
-from ....extern.six.moves import range, zip
-from ....extern.six.moves import cPickle as pickle
-from ....io import fits
-from ....tests.helper import catch_warnings, ignore_warnings
-from ....utils.exceptions import AstropyDeprecationWarning
+from astropy.extern import six
+from astropy.extern.six.moves import range, zip
+from astropy.extern.six.moves import cPickle as pickle
+from astropy.io import fits
+from astropy_tests.utils.helper import catch_warnings, ignore_warnings
+from astropy.utils.exceptions import AstropyDeprecationWarning
 
-from ..column import Delayed, NUMPY2FITS
-from ..util import decode_ascii
-from ..verify import VerifyError
-from . import FitsTestCase
-
-
-def comparefloats(a, b):
-    """
-    Compare two float scalars or arrays and see if they are consistent
-
-    Consistency is determined ensuring the difference is less than the
-    expected amount. Return True if consistent, False if any differences.
-    """
-
-    aa = a
-    bb = b
-    # compute expected precision
-    if aa.dtype.name == 'float32' or bb.dtype.name == 'float32':
-        precision = 0.000001
-    else:
-        precision = 0.0000000000000001
-    precision = 0.00001  # until precision problem is fixed in astropy.io.fits
-    diff = np.absolute(aa - bb)
-    mask0 = aa == 0
-    masknz = aa != 0.
-    if np.any(mask0):
-        if diff[mask0].max() != 0.:
-            return False
-    if np.any(masknz):
-        if (diff[masknz] / np.absolute(aa[masknz])).max() > precision:
-            return False
-    return True
-
-
-def comparerecords(a, b):
-    """
-    Compare two record arrays
-
-    Does this field by field, using approximation testing for float columns
-    (Complex not yet handled.)
-    Column names not compared, but column types and sizes are.
-    """
-
-    nfieldsa = len(a.dtype.names)
-    nfieldsb = len(b.dtype.names)
-    if nfieldsa != nfieldsb:
-        print("number of fields don't match")
-        return False
-    for i in range(nfieldsa):
-        fielda = a.field(i)
-        fieldb = b.field(i)
-        if fielda.dtype.char == 'S':
-            fielda = decode_ascii(fielda)
-        if fieldb.dtype.char == 'S':
-            fieldb = decode_ascii(fieldb)
-        if (not isinstance(fielda, type(fieldb)) and not
-            isinstance(fieldb, type(fielda))):
-            print("type(fielda): ", type(fielda), " fielda: ", fielda)
-            print("type(fieldb): ", type(fieldb), " fieldb: ", fieldb)
-            print('field {0} type differs'.format(i))
-            return False
-        if len(fielda) and isinstance(fielda[0], np.floating):
-            if not comparefloats(fielda, fieldb):
-                print("fielda: ", fielda)
-                print("fieldb: ", fieldb)
-                print('field {0} differs'.format(i))
-                return False
-        elif (isinstance(fielda, fits.column._VLF) or
-              isinstance(fieldb, fits.column._VLF)):
-            for row in range(len(fielda)):
-                if np.any(fielda[row] != fieldb[row]):
-                    print('fielda[{0}]: {1}'.format(row, fielda[row]))
-                    print('fieldb[{0}]: {1}'.format(row, fieldb[row]))
-                    print('field {0} differs in row {1}'.format(i, row))
-        else:
-            if np.any(fielda != fieldb):
-                print("fielda: ", fielda)
-                print("fieldb: ", fieldb)
-                print('field {0} differs'.format(i))
-                return False
-    return True
+from astropy.io.fits.column import Delayed, NUMPY2FITS
+from astropy.io.fits.util import decode_ascii
+from astropy.io.fits.verify import VerifyError
+from utils.helper import comparefloats, comparerecords, FitsTestCase
 
 
 class TestTableFunctions(FitsTestCase):
@@ -3030,7 +2953,7 @@ def test_regression_5383():
 
 
 def test_table_to_hdu():
-    from ....table import Table
+    from astropy.table import Table
     table = Table([[1, 2, 3], ['a', 'b', 'c'], [2.3, 4.5, 6.7]],
                     names=['a', 'b', 'c'], dtype=['i', 'U1', 'f'])
     table['a'].unit = 'm/s'

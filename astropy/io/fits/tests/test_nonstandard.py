@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from ....io import fits
-from . import FitsTestCase
+from astropy.io import fits
+from utils.helper import FitsTestCase
 
 
 class TestNonstandardHdus(FitsTestCase):

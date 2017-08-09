@@ -2,15 +2,15 @@
 
 import pytest
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
-from ..fitstime import GLOBAL_TIME_INFO, time_to_fits, is_time_column_keyword
-from ....coordinates import EarthLocation
-from ....table import Table, QTable
-from ....time import Time
-from ....time.core import BARYCENTRIC_SCALES
-from ....time.formats import FITS_DEPRECATED_SCALES
-from ....tests.helper import catch_warnings
+from astropy.io.fits.fitstime import GLOBAL_TIME_INFO, time_to_fits, is_time_column_keyword
+from astropy.coordinates import EarthLocation
+from astropy.table import Table, QTable
+from astropy.time import Time
+from astropy.time.core import BARYCENTRIC_SCALES
+from astropy.time.formats import FITS_DEPRECATED_SCALES
+from astropy_tests.utils.helper import catch_warnings
 
 
 class TestFitsTime(FitsTestCase):

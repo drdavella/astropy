@@ -4,13 +4,13 @@ import sys
 
 import numpy as np
 
-from . import FitsTestCase
-from ..hdu import PrimaryHDU
-from ..scripts import fitsdiff
-from ....tests.helper import catch_warnings
-from ....tests.helper import pytest
-from ....utils.exceptions import AstropyDeprecationWarning
-from ....version import version
+from utils.helper import FitsTestCase
+from astropy.io.fits.hdu import PrimaryHDU
+from astropy.io.fits.scripts import fitsdiff
+from astropy_tests.utils.helper import catch_warnings
+from astropy_tests.utils.helper import pytest
+from astropy.utils.exceptions import AstropyDeprecationWarning
+from astropy.version import version
 
 
 class TestFITSDiff_script(FitsTestCase):

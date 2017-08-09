@@ -18,19 +18,19 @@ try:
 except ImportError:
     HAVE_STRINGIO = False
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
-from ..convenience import _getext
-from ..diff import FITSDiff
-from ..file import _File, GZIP_MAGIC
+from astropy.io.fits.convenience import _getext
+from astropy.io.fits.diff import FITSDiff
+from astropy.io.fits.file import _File, GZIP_MAGIC
 
-from ....extern import six
-from ....extern.six.moves import range, zip
-from ....io import fits
-from ....tests.helper import raises, catch_warnings, ignore_warnings
-from ....tests.helper import remote_data
-from ....utils.data import conf, get_pkg_data_filename
-from ....utils import data
+from astropy.extern import six
+from astropy.extern.six.moves import range, zip
+from astropy.io import fits
+from astropy_tests.utils.helper import raises, catch_warnings, ignore_warnings
+from astropy_tests.utils.helper import remote_data
+from astropy.utils.data import conf, get_pkg_data_filename
+from astropy.utils import data
 
 
 try:

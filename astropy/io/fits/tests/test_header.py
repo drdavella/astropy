@@ -13,17 +13,17 @@ from io import StringIO, BytesIO
 import pytest
 import numpy as np
 
-from ....extern import six
-from ....extern.six import u, iterkeys, itervalues, iteritems
-from ....extern.six.moves import zip, range
-from ....io import fits
-from ....io.fits.verify import VerifyWarning
-from ....tests.helper import catch_warnings, ignore_warnings
+from astropy.extern import six
+from astropy.extern.six import u, iterkeys, itervalues, iteritems
+from astropy.extern.six.moves import zip, range
+from astropy.io import fits
+from astropy.io.fits.verify import VerifyWarning
+from astropy_tests.utils.helper import catch_warnings, ignore_warnings
 
-from . import FitsTestCase
-from ..card import _pad
-from ..header import _pad_length
-from ..util import encode_ascii
+from utils.helper import FitsTestCase
+from astropy.io.fits.card import _pad
+from astropy.io.fits.header import _pad_length
+from astropy.io.fits.util import encode_ascii
 
 
 def test_shallow_copy():
@@ -2674,7 +2674,7 @@ class TestRecordValuedKeywordCards(FitsTestCase):
 
     def test_fitsheader_script(self):
         """Tests the basic functionality of the `fitsheader` script."""
-        from ....io.fits.scripts import fitsheader
+        from astropy.io.fits.scripts import fitsheader
 
         # Can an extension by specified by the EXTNAME keyword?
         hf = fitsheader.HeaderFormatter(self.data('zerowidth.fits'))
@@ -2714,8 +2714,8 @@ class TestRecordValuedKeywordCards(FitsTestCase):
 
     def test_fitsheader_table_feature(self):
         """Tests the `--table` feature of the `fitsheader` script."""
-        from ....io import fits
-        from ....io.fits.scripts import fitsheader
+        from astropy.io import fits
+        from astropy.io.fits.scripts import fitsheader
         test_filename = self.data('zerowidth.fits')
         fitsobj = fits.open(test_filename)
         formatter = fitsheader.TableHeaderFormatter(test_filename)

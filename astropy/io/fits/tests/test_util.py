@@ -16,12 +16,12 @@ try:
 except ImportError:
     HAS_PIL = False
 
-from ....tests.helper import catch_warnings
-from .. import util
-from ..util import ignore_sigint
-from .._numpy_hacks import realign_dtype
+from astropy_tests.utils.helper import catch_warnings
+from astropy.io.fits import util
+from astropy.io.fits.util import ignore_sigint
+from astropy.io.fits._numpy_hacks import realign_dtype
 
-from . import FitsTestCase
+from utils.helper import FitsTestCase
 
 
 class TestUtils(FitsTestCase):

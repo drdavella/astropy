@@ -5,15 +5,15 @@ import pytest
 import numpy as np
 from numpy.testing import assert_allclose
 
-from .. import HDUList, PrimaryHDU, BinTableHDU
+from astropy.io.fits import HDUList, PrimaryHDU, BinTableHDU
 
-from ... import fits
+from astropy.io import fits
 
-from .... import units as u
-from ....extern.six.moves import range, zip
-from ....table import Table, QTable
-from ....tests.helper import catch_warnings
-from ....units.format.fits import UnitScaleError
+from astropy import units as u
+from astropy.extern.six.moves import range, zip
+from astropy.table import Table, QTable
+from astropy_tests.utils.helper import catch_warnings
+from astropy.units.format.fits import UnitScaleError
 
 DATA = os.path.join(os.path.dirname(__file__), 'data')
 

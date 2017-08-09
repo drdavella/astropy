@@ -6,12 +6,10 @@ import warnings
 import pytest
 import numpy as np
 
-from .test_table import comparerecords
-from ..hdu.base import _ValidHDU
-from ....io import fits
-from ....extern.six.moves import zip
-
-from . import FitsTestCase
+from astropy.io.fits.hdu.base import _ValidHDU
+from astropy.io import fits
+from astropy.extern.six.moves import zip
+from utils.helper import comparerecords, FitsTestCase
 
 
 class TestChecksumFunctions(FitsTestCase):

@@ -4,8 +4,8 @@ import sys
 
 import numpy as np
 
-from ....io import fits
-from . import FitsTestCase
+from astropy.io import fits
+from utils.helper import FitsTestCase
 
 
 def compare_arrays(arr1in, arr2in, verbose=False):
