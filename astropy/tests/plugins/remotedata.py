@@ -4,8 +4,8 @@ These plugins modify the behavior of py.test and are meant to be imported
 into conftest.py in the root directory.
 """
 
-from .helper import pytest
-from .disable_internet import turn_off_internet, turn_on_internet
+from ..helper import pytest
+from ..disable_internet import turn_off_internet, turn_on_internet
 
 
 def pytest_addoption(parser):
