@@ -467,6 +467,10 @@ astropy.tests
 
 - Updated top-level config file to properly ignore top-level directories.
   [#6449]
+- Fixed issue with running test suite directly from ``pytest``. [#6437]
+
+astropy.time
+^^^^^^^^^^^^
 
 astropy.units
 ^^^^^^^^^^^^^
