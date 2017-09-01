@@ -28,13 +28,11 @@ What is a Record Array?
 
 A record array is an array which contains records (i.e. rows) of heterogeneous
 data types. Record arrays are available through the records module in the numpy
-library. Here is a simple example of record array:
-
-.. doctest-skip::
+library. Here is a simple example of record array::
 
     >>> from numpy import rec
-    >>> bright = rec.array([(1,'Sirius', -1.45, 'A1V'),
-    ...                     (2,'Canopus', -0.73, 'F0Ib'),
+    >>> bright = rec.array([(1,'Sirius', -1.45000005, 'A1V'),
+    ...                     (2,'Canopus', -0.73000002, 'F0Ib'),
     ...                     (3,'Rigil Kent', -0.1, 'G2V')],
     ...                     formats='int16,a20,float32,a10',
     ...                     names='order,name,mag,Sp')
@@ -75,14 +73,18 @@ Reading a FITS Table
 Like images, the ``.data`` attribute of a table HDU contains the data of the
 table.  To recap, the simple example in the Quick Tutorial:
 
-.. doctest-skip::
+.. testsetup::
+    >>> # Write the table above to a file for the next example
+    >>> from astropy.io import fits
+    >>> hdu = fits.BinTableHDU(bright)
+    >>> hdu.writeto('bright_stars.fits')
 
+.. doctest::
     >>> from astropy.io import fits
     >>> f = fits.open('bright_stars.fits')  # open a FITS file
     >>> tbdata = f[1].data  # assume the first extension is a table
     >>> print(tbdata[:2])  # show the first two rows
-    [(1, 'Sirius', -1.4500000476837158, 'A1V'),
-    (2, 'Canopus', -0.73000001907348633, 'F0Ib')]
+    [(1, 'Sirius', -1.45000005, 'A1V') (2, 'Canopus', -0.73000002, 'F0Ib')]
     >>> print(tbdata['mag'])  # show the values in field "mag"
     [-1.45000005 -0.73000002 -0.1 ]
     >>> print(tbdata.field(1))  # columns can be referenced by index too
