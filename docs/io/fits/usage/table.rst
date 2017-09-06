@@ -52,6 +52,17 @@ semantics as :meth:`BinTableHDU.from_columns` and
 :meth:`TableHDU.from_columns`, except that it only returns an actual FITS_rec
 array and not a whole HDU object.
 
+However, the simplest way to create a FITS object from the array we created
+above is to pass it directly to the constructor of :class:`BinTableHDU`::
+
+    >>> from astropy.io import fits
+    >>> hdu = fits.BinTableHDU(bright)
+
+This data can then be written to a file using the :meth:`writeto` method of the
+new HDU object::
+
+    >>> hdu.writeto('bright_stars.fits')
+
 
 Metadata of a Table
 -------------------
@@ -71,15 +82,9 @@ Reading a FITS Table
 --------------------
 
 Like images, the ``.data`` attribute of a table HDU contains the data of the
-table.  To recap, the simple example in the Quick Tutorial:
+table. As an example we will open the file that we created above that contains
+data on bright stars::
 
-.. testsetup::
-    >>> # Write the table above to a file for the next example
-    >>> from astropy.io import fits
-    >>> hdu = fits.BinTableHDU(bright)
-    >>> hdu.writeto('bright_stars.fits')
-
-.. doctest::
     >>> from astropy.io import fits
     >>> f = fits.open('bright_stars.fits')  # open a FITS file
     >>> tbdata = f[1].data  # assume the first extension is a table
