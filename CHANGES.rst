@@ -85,7 +85,8 @@ astropy.table
 astropy.tests
 ^^^^^^^^^^^^^
 
-- Split pytest plugins into separate modules. [#6384]
+- Split pytest plugins into separate modules. Move remotedata, openfiles,
+  doctestplus plugins to standalone repositories. [#6606]
 
 astropy.time
 ^^^^^^^^^^^^
