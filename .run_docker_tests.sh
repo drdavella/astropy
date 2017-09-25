@@ -20,13 +20,13 @@ python3 -c 'import sys; print(sys.maxsize)'
 # we install an older version here
 easy_install-3.5 pytest pytest-xdist
 
+# Install git
+apt-get install -y git
+
 # Temporary update to support testing against new standalone pytest plugins
 pip install git+https://github.com/astropy/pytest-doctestplus.git
 pip install git+https://github.com/astropy/pytest-remotedata.git
 pip install git+https://github.com/astropy/pytest-openfiles.git
-
-# Install git
-apt-get install -y git
 
 PYTHONHASHSEED=42 python3 setup.py test --parallel=4
 
