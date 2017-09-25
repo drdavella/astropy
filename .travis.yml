@@ -153,6 +153,10 @@ matrix:
 install:
     - git clone git://github.com/astropy/ci-helpers.git
     - source ci-helpers/travis/setup_conda.sh
+    # For testing purposes, before these packages are available on pypi
+    - pip install git+https://github.com/astropy/pytest-doctestplus.git
+    - pip install git+https://github.com/astropy/pytest-remotedata.git
+    - pip install git+https://github.com/astropy/pytest-openfiles.git
 
 script:
     - echo "$MAIN_CMD $SETUP_CMD"
