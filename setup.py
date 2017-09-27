@@ -74,7 +74,14 @@ if not os.path.exists(os.path.join(os.path.dirname(__file__), 'PKG-INFO')):
 
 # Eventually, if we can do away with the test runner, then pytest-astropy
 # should be a test dependency, not an install dependency
-install_requires = ['pytest>=3.1', min_numpy_version]
+install_requires = [
+    'pytest>=3.1',
+    min_numpy_version,
+    # Eventually these dependencies will be replaced by pytest-astropy
+    'pytest-doctestplus',
+    'pytest-remotedata',
+    'pytest-openfiles',
+]
 # Avoid installing setup_requires dependencies if the user just
 # queries for information
 if is_distutils_display_option():
@@ -87,6 +94,12 @@ setup(name=NAME,
       requires=['numpy'],  # scipy not required, but strongly recommended
       setup_requires=setup_requires,
       install_requires=install_requires,
+      # Temporary workaround until these are published on pypi
+      dependency_links=[
+          'git+https://github.com/astropy/pytest-doctestplus#egg=pytest-doctestplus',
+          'git+https://github.com/astropy/pytest-remotedata#egg=pytest-remotedata',
+          'git+https://github.com/astropy/pytest-openfiles#egg=pytest-openfiles'
+      ],
       provides=[NAME],
       author='The Astropy Developers',
       author_email='astropy.team@gmail.com',
