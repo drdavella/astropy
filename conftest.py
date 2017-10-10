@@ -5,8 +5,14 @@ This file contains pytest configuration settings that are astropy-specific
 making use of astropy's test runner).
 """
 
-from .tests.helper import enable_deprecations_as_exceptions
-from .tests.plugins.display import PYTEST_HEADER_MODULES
+from astropy.tests.helper import enable_deprecations_as_exceptions
+from astropy.tests.plugins.display import PYTEST_HEADER_MODULES
+
+pytest_plugins = [
+    'astropy.tests.plugins.repeat',
+    'astropy.tests.plugins.config',
+    'astropy.tests.plugins.display',
+]
 
 try:
     import matplotlib
