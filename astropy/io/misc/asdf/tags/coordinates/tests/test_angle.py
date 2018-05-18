@@ -27,3 +27,23 @@ def test_latitude(tmpdir):
 def test_longitude(tmpdir):
     tree = {'angle': Longitude(-100, u.deg, wrap_angle=180*u.deg)}
     assert_roundtrip_tree(tree, tmpdir)
+
+def test_ndarray_latitude(tmpdir):
+    tmpfile = str(tmpdir.join('lat.asdf'))
+
+    tree = {'lat': Latitude([1, 1.1, 1.5], u.rad)}
+    with asdf.AsdfFile(tree) as af:
+        af.write_to(tmpfile)
+
+    with asdf.open(tmpfile) as ff:
+        assert all(ff.tree['lat'] == tree['lat'])
+
+def test_ndarray_longitude(tmpdir):
+    tmpfile = str(tmpdir.join('long.asdf'))
+
+    tree = {'long': Longitude([1, 1.1, 1.5], u.rad)}
+    with asdf.AsdfFile(tree) as af:
+        af.write_to(tmpfile)
+
+    with asdf.open(tmpfile) as ff:
+        assert all(ff.tree['long'] == tree['long'])
