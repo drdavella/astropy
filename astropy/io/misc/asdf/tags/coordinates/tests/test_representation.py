@@ -36,3 +36,17 @@ def representation(request):
 def test_representations(tmpdir, representation):
     tree = {'representation': representation}
     assert_roundtrip_tree(tree, tmpdir)
+
+def test_spherical_representation_scalar(tmpdir):
+    sr = r.SphericalRepresentation(0.5*u.rad, 1*u.rad, distance=5*u.parsec)
+    # Testing to make sure there is no ValidationError here
+    with asdf.AsdfFile(tree=dict(sphere=sr)) as af:
+        pass
+
+def test_spherical_representation_ndarray(tmpdir):
+    latitude = [0.1, 0.2, 0.3] * u.rad
+    longitude = [1.1, 1.3, 1.9] * u.rad
+    sr = r.SphericalRepresentation(longitude, latitude, distance=5*u.parsec)
+    # Testing to make sure there is no ValidationError here
+    with asdf.AsdfFile(tree=dict(sphere=sr)) as af:
+        pass
