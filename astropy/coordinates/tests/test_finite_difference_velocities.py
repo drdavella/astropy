@@ -172,8 +172,7 @@ _xfail = pytest.mark.xfail
 
 @pytest.mark.parametrize('distance', [1000*u.au,
                                       10*u.pc,
-                                      pytest.param(10*u.kpc, marks=_xfail),
-                                      pytest.param(100*u.kpc, marks=_xfail)])
+                                     ])
                                       # TODO:  make these not fail when the
                                       # finite-difference numerical stability
                                       # is improved
