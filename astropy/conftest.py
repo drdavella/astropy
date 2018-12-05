@@ -7,6 +7,8 @@ making use of astropy's test runner).
 import builtins
 from importlib.util import find_spec
 
+import py.path
+
 from astropy.tests.plugins.display import PYTEST_HEADER_MODULES
 from astropy.tests.helper import enable_deprecations_as_exceptions
 
@@ -19,7 +21,7 @@ else:
 
 if find_spec('asdf') is not None:
     from asdf import __version__ as asdf_version
-    if asdf_version >= '2.0.0':
+    if asdf_version >= '2.3.0':
         pytest_plugins = ['asdf.tests.schema_tester']
         PYTEST_HEADER_MODULES['Asdf'] = 'asdf'
 
@@ -35,6 +37,22 @@ if HAS_MATPLOTLIB:
 
 matplotlibrc_cache = {}
 
+
+def pytest_ignore_collect(path, config):
+    asdf_path = py.path.local(os.path.join(os.path.dirname(__file__), 'io', 'misc', 'asdf'))
+    if path.common(asdf_path) != asdf_path:
+        return False
+
+    try:
+        import asdf
+        from distutils.version import LooseVersion
+        # Only skip if we don't have a sufficiently recent version of ASDF
+        return LooseVersion(asdf.__version__) < LooseVersion('2.3.0')
+    except ImportError:
+        pass
+
+    # If we make it here, then skip all tests at this level and below
+    return True
 
 def pytest_configure(config):
     builtins._pytest_running = True
